@@ -18,18 +18,32 @@
         <EditText
             android:id="@+id/etFormTitulo"
             android:gravity="center"
-            android:hint="Titulo"
+            android:hint="Título do filme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        <EditText
-            android:id="@+id/etFormAvaliacao"
-            android:gravity="center"
-            android:hint="Avaliação"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number"/>
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <SeekBar
+            android:id="@+id/sbFormAvaliacao"
+            android:min="0"
+            android:max="10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvFormAvaliacao"
+            android:textSize="25sp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
     </LinearLayout>
 
     <LinearLayout
