@@ -2,6 +2,7 @@ package com.example.filmow
 
 import android.app.Activity
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.util.Log
 import com.google.android.material.snackbar.Snackbar
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var filmeAdapter: FilmeRecyclerAdapter
     private lateinit var dao: FilmeDAO
     private lateinit var lista: ArrayList<Filme>
+    private lateinit var telaReceiver: TelaReceiver
     val FORM_ADD = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +29,7 @@ class MainActivity : AppCompatActivity() {
 
         dao = FilmeDAO(this)
         this.lista = arrayListOf()
+        this.telaReceiver = TelaReceiver()
 
         //inserirFilme()
         this.lista = this.dao.get()
@@ -54,6 +57,14 @@ class MainActivity : AppCompatActivity() {
         this.lista.clear()
         this.lista.addAll(this.dao.get())
         filmeAdapter.update()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        val itfTela = IntentFilter()
+        itfTela.addAction(Intent.ACTION_USER_PRESENT)
+        registerReceiver(this.telaReceiver, itfTela)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
